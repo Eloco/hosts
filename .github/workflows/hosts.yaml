@@ -22,7 +22,7 @@ jobs:
         run: |
           cat hosts_init  >  hosts
           cat hosts_eloco >> hosts
-          for i in `cat hosts_url | sed -r 's/#[^#?]*$//g'`;curl -s ${i} >> hosts
+          for i in `cat hosts_url | sed -r 's/#[^#?]*$//g'`; curl -s ${i} >> hosts
 
       - name: Commit report
         run: |
