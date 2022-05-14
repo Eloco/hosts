@@ -1,0 +1,34 @@
+name: 'hosts'
+
+on:
+  workflow_dispatch:
+    inputs:
+        tags:
+          description: 'action'  
+  schedule:
+    - cron: '*/10 * * * *'
+
+permissions: write-all
+
+jobs:
+  CleanMD5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: generate hosts
+        run: |
+          cat hosts_init  >  hosts
+          cat hosts_eloco >> hosts
+          for i in `cat hosts_url | sed -r 's/#[^#?]*$//g'`;curl -s ${i} >> hosts
+
+      - name: Commit report
+        run: |
+          git add -A
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "Automated Generate md5"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git push -f
