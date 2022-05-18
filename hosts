@@ -5,9 +5,6 @@ fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
-0.0.0.0		    eloco-bpa-VirtualBox
-0.0.0.0         SH-BPAS 
-0.0.0.0         SH-CEIC
 54.85.56.253	registry-1.docker.io
 # New！欢迎使用基于DNS的新方案
 # https://gitee.com/ineo6/hosts/raw/master/next-hosts
