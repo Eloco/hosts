@@ -25,7 +25,7 @@ jobs:
       - name: generate dns-block-list
         run: |
           cp blocklist.init blocklist.txt
-          for i in `cat blocklist.url | sed -r 's/#[^#?]*$//g'`;do (wget -q $i -O blocklist.temp; cat blocklist.temp |  grep -E '^[A-z0-9a-z]' | sed 's/0.0.0.0\s*//g' | sed -r 's/#[^#?]*$//g'  >> ./blocklist.txt) ; done
+          for i in `cat blocklist.url | sed -r 's/#[^#?]*$//g'`;do (wget -q $i -O blocklist.temp; cat blocklist.temp |  grep -E '^[\sA-z0-9a-z]+$' | sed 's/0.0.0.0\s*//g' | sed -r 's/#[^#?]*$//g' | awk -F ' ' '{print $0}'  >> ./blocklist.txt) ; done
           rm blocklist.temp
 
       - name: Commit report
