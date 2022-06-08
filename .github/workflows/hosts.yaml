@@ -24,6 +24,11 @@ jobs:
           cat hosts_eloco >> hosts
           for i in `cat hosts_url | sed -r 's/#[^#?]*$//g'`; do curl -s ${i} >> hosts; done
 
+      - name: dns block list
+        run: |
+          cp blocklist.init blocklist.txt
+          for i in `cat blocklist.url | sed -r 's/#[^#?]*$//g'`;do (curl -f  $i |  grep '^[0-9a-Z]' | sed 's/0.0.0.0\s*//g' ) >> ./blocklist.txt ; done
+
       - name: Commit report
         continue-on-error: true
         run: |
