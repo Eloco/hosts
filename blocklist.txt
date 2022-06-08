@@ -1,1 +1,7 @@
 default.defaultxxxxx123
+broadcasthost
+from
+hostwinds
+inf
+local
+localhost
