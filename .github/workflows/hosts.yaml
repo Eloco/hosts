@@ -1,10 +1,8 @@
 name: 'hosts'
 
-on:
+on: 
+  push:
   workflow_dispatch:
-    inputs:
-        tags:
-          description: 'action'  
   schedule:
     - cron: '*/10 * * * *'
 
