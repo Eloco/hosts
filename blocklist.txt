@@ -2,6 +2,7 @@ default.defaultxxxxx123
 broadcasthost
 from
 hostwinds
+http
 inf
 local
 localhost
